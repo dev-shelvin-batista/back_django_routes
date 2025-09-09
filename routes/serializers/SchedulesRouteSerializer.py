@@ -10,24 +10,25 @@ class SchedulesRouteSerializer(serializers.Serializer):
     stop_id = serializers.IntegerField()
     route_id = serializers.IntegerField()
     
-    """ Validar existencia de la parada """
+    """ Validate the existence of the stop """
     def validate_parada_id(self, value):
         stop_data = Stops.objects.filter(id=value)
             
         if stop_data.__len__() == 0:                
-            raise serializers.ValidationError("Parada no existe")
+            raise serializers.ValidationError("Stop does not exist")
         
         return value
     
-    """ Validar existencia de la ruta """
+    """ Validate the existence of the route """
     def validate_route_id(self, value):
         route_data = Routes.objects.filter(id=value)
             
         if route_data.__len__() == 0:                
-            raise serializers.ValidationError("Ruta no existe")
+            raise serializers.ValidationError("Route does not exist")
         
         return value
     
+    """ Method for assigning a stop to a route after the data has passed validation and is correct. """
     def create(self, validated_data):
         schedule = Schedules.objects.create(**validated_data)        
         return schedule

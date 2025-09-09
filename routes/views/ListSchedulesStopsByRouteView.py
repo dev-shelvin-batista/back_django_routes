@@ -8,11 +8,11 @@ from stops.serializers.ListStopsSerializer import ListStopsSerializer
 
 class ListSchedulesStopsByRouteView(APIView):
     """ 
-        API rest de obtener las paradas de una ruta
+        REST API to obtain the stops on a route
         
-        Retorna los datos de las paradas de una ruta o un error 
+        Returns data about stops along a route or an error. 
         
-        Rol -> Operador logístico o Pasajero
+        Rol -> Operador logístico / Pasajero
     """
     def get(self, request, route_id):
         response = dict()    

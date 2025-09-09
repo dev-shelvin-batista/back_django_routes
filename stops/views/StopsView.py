@@ -9,7 +9,13 @@ from ..serializers.StopsSerializer import StopsSerializer
 from ..serializers.ListStopsSerializer import ListStopsSerializer
 
 class StopsView(APIView):
-
+    """ 
+        Rest API to obtain registered stops
+        
+        Returns the stop data
+        
+        Rol -> Operador logístico / Pasajero
+    """
     def get(self, request):
         response = dict()    
         data = dict()    
@@ -20,9 +26,9 @@ class StopsView(APIView):
         return JsonResponse(status=status.HTTP_200_OK, data=response)
     
     """ 
-        API rest de registrar una parada
+        Rest API for registering a stop
         
-        Retorna los datos de la parada registrada o un error
+        Returns the data for the recorded stop or an error.
         
         Rol -> Operador logístico
     """
@@ -35,7 +41,7 @@ class StopsView(APIView):
             data = {}        
                 
         serializer = StopsSerializer(data=data)
-        """ Se valida si no hay errores la operacion de crear. Si hay errores, se retorna """
+        """ The creation operation is validated if there are no errors. If there are errors, it returns """
         if serializer.is_valid(raise_exception=False):
             stop = serializer.create(serializer.data)
             serializer_data = ListStopsSerializer(stop, many=False)

@@ -6,6 +6,13 @@ from ..serializers.ListRolesSerializer import ListRolesSerializer
 
 class RolesView(APIView):
     
+    """ 
+        Rest API to obtain registered roles
+        
+        Returns role data for users
+        
+        Rol -> N/A
+    """
     def get(self, request):
         response = dict()
 

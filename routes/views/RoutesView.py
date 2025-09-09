@@ -8,11 +8,11 @@ from ..serializers.RoutesSerializer import RoutesSerializer
 
 class RoutesView(APIView):
     """ 
-        API rest de listar los datos de las rutas ya creadas
+        Rest API to list data from routes already created
         
-        Retorna los datos de las rutas en base de datos
+        Returns route data from the database.
         
-        Rol -> Operador logístico o Pasajero
+        Rol -> Operador logístico / Pasajero
     """
     def get(self, request):
         response = dict()    
@@ -24,9 +24,9 @@ class RoutesView(APIView):
         return JsonResponse(status=status.HTTP_200_OK, data=response)
     
     """ 
-        API rest de registrar un ruta
+        Rest API for logging a route
         
-        Retorna los datos de la ruta creada o un error 
+        Returns the data for the created route or an error 
         
         Rol -> Operador logístico
     """
@@ -39,7 +39,7 @@ class RoutesView(APIView):
             data = {}        
                 
         serializer = RoutesSerializer(data=data)
-        """ Se valida si no hay errores la operacion de crear. Si hay errores, se retorna """
+        """ The creation operation is validated if there are no errors. If there are errors, it returns """
         if serializer.is_valid(raise_exception=False):
             route = serializer.create(serializer.data)
             serializer_data = ListRoutesSerializer(route, many=False)

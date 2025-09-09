@@ -8,11 +8,11 @@ from ..serializers.ListUsersSerializer import ListUsersSerializer
 
 class RegisterUserView(APIView):
     """ 
-        API rest de registro del usuario.
+        REST API for user registration.
         
-        Retorna los datos del usuario creado o un error 
+        Returns the data of the created user or an error 
         
-        Rol -> No Aplica
+        Rol -> N/A
     """
     def post(self, request):
         response = dict()
@@ -23,7 +23,7 @@ class RegisterUserView(APIView):
             data = {}
         
         serializer = UserSerializer(data=data)
-        """ Se valida si no hay errores la operacion de crear. Si hay errores, se retorna """
+        """ The creation operation is validated if there are no errors. If there are errors, it returns """
         if serializer.is_valid(raise_exception=False):
             
             usuario = serializer.create(serializer.data)

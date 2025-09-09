@@ -10,24 +10,25 @@ class UserSerializer(serializers.Serializer):
     lastname = serializers.CharField(max_length=200)
     rol_id = serializers.IntegerField()
     
-    """ Validar existencia del usuario """
+    """ Validate the user's existence """
     def validate_username(self, value):
         user_data = Users.objects.filter(username=value)
             
         if user_data.__len__() > 0:                
-            raise serializers.ValidationError("Usuaio ya existe")
+            raise serializers.ValidationError("User already exists")
         
         return value
     
-    """ Validar existencia del rol """
+    """ Validate the existence of the role """
     def validate_rol_id(self, value):
         rol_data = Roles.objects.filter(id=value)
             
         if rol_data.__len__() == 0:                
-            raise serializers.ValidationError("Rol no existe")
+            raise serializers.ValidationError("Role does not exist")
         
         return value
     
+    """ Method for creating a user after the data has passed validation and is correct. """
     def create(self, validated_data):
         validated_data["password"] = hashlib.md5(validated_data["password"].encode()).hexdigest()
         user = Users.objects.create(**validated_data)

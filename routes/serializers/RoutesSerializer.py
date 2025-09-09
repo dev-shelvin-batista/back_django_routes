@@ -6,6 +6,7 @@ class RoutesSerializer(serializers.Serializer):
     origin = serializers.CharField(max_length=150)
     destination = serializers.CharField(max_length=150)
     
+    """ Method for creating a route after the data has passed validation and is correct. """
     def create(self, validated_data):
         route = Routes.objects.create(**validated_data)
         

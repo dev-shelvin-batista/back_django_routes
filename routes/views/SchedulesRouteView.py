@@ -7,9 +7,9 @@ from ..serializers.ListSchedulesRouteSerializer import ListSchedulesRouteSeriali
 
 class SchedulesRouteView(APIView):
     """ 
-        API rest de asignar una parada a una ruta en un horario
+        Rest API to assign a stop to a route in a schedule
         
-        Retorna los datos del horario establecido en la ruta o un error 
+        Returns the schedule data established on the route or an error. 
         
         Rol -> Operador logístico
     """
@@ -24,7 +24,7 @@ class SchedulesRouteView(APIView):
         data["route_id"] = route_id
         
         serializer = SchedulesRouteSerializer(data=data)
-        """ Se valida si no hay errores la operacion de crear. Si hay errores, se retorna """
+        """ The creation operation is validated if there are no errors. If there are errors, it returns """
         if serializer.is_valid(raise_exception=False):
             schedule = serializer.create(serializer.data)
             serializer_data = ListSchedulesRouteSerializer(schedule, many=False)

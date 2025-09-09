@@ -8,15 +8,16 @@ class StopsSerializer(serializers.Serializer):
     longitude = serializers.CharField(max_length=50)
     city_id = serializers.IntegerField()
     
-    """ Validar existencia de la ciudad """
+    """ Validate the existence of the city """
     def validate_city_id(self, value):
         city_data = Cities.objects.filter(id=value)
             
         if city_data.__len__() == 0:                
-            raise serializers.ValidationError("Ciudad no existe")
+            raise serializers.ValidationError("City does not exist")
         
         return value
     
+    """ Method for creating a stop after the data has passed validation and is correct. """
     def create(self, validated_data):
         stop = Stops.objects.create(**validated_data)        
         return stop

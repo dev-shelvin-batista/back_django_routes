@@ -8,6 +8,13 @@ from ..serializers.CitiesSerializer import CitiesSerializer
 
 class CitiesView(APIView):
     
+    """ 
+        Rest API to obtain registered cities
+        
+        Returns data about cities.
+        
+        Rol -> Operador logístico / Pasajero
+    """
     def get(self, request):
         response = dict()
 
@@ -16,6 +23,13 @@ class CitiesView(APIView):
         response["data"] = serializer.data
         return JsonResponse(status=status.HTTP_200_OK, data=response)
     
+    """ 
+        Rest API to register a city. 
+        
+        Returns the data for the registered city or an error.  
+              
+        Rol -> Operador logístico.
+    """
     def post(self, request):
         response = dict()
         
@@ -25,7 +39,7 @@ class CitiesView(APIView):
             data = {}        
                 
         serializer = CitiesSerializer(data=data)
-        """ Se valida si no hay errores la operacion de crear. Si hay errores, se retorna """
+        """ The creation operation is validated if there are no errors. If there are errors, it returns """
         if serializer.is_valid(raise_exception=False):
             city = serializer.create(serializer.data)
             serializer_data = ListCitiesSerializer(city, many=False)

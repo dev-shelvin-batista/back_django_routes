@@ -7,11 +7,11 @@ from ..serializers.ListSchedulesRouteSerializer import ListSchedulesRouteSeriali
 
 class ListSchedulesByRouteView(APIView):
     """ 
-        API rest de obtener los detalles de un ruta
+        Rest API to obtain route details
         
-        Retorna los datos de una ruta creada o un error 
+        Returns the data for a created route or an error. 
         
-        Rol -> Operador logístico o Pasajero
+        Rol -> Operador logístico / Pasajero
     """
     def get(self, request, route_id):
         response = dict()    

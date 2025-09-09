@@ -11,11 +11,13 @@ class ListUsersSerializer(serializers.Serializer):
     lastname = serializers.CharField(max_length=200, required=False)
     rol = ListRolesSerializer(required=False)
     
+    """ Method that allows you to validate whether a user exists by comparing the username and password with the data sent by the user. """
     def login(self, username, password):
         user_data = Users.objects.filter(username=username, password=password)
         
+        # Validate the user's existence
         if user_data.__len__() == 0:                
-            raise serializers.ValidationError("Usuario no existe")
+            raise serializers.ValidationError("User does not exist")
         
         return user_data.first()
     
