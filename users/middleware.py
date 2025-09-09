@@ -5,6 +5,8 @@ WHITELISTED_URLS = [
     "/api/users/login",
     "/api/users/register",
     "/api/users/roles",
+    "/docs/",
+    "/redocs/",
 ]
 
 """ Middleware that allows you to validate whether a user has an active session using a token. """
