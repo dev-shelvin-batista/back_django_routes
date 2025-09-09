@@ -1,6 +1,6 @@
 
 # Project details
-Este proyecto funciona como proyecto backend desarrollado en Django REST API modularizado y serializado con una base de datos PostgreSQL.
+This project functions as a backend project developed in Django REST API, modularized and serialized with a PostgreSQL database.
 
 | |Version |
 |----------------|-------------------------------|
